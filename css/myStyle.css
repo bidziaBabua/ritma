@@ -1,0 +1,15 @@
+#searchRhyme{
+	position: absolute;
+	left: 200px;
+	width: 800px;
+	height: 30px;
+}
+#searchButton{
+	position: absolute;
+	left: 1010px;
+}
+#result{
+	position: relative;
+	width: 1000px;
+	left: 200px;
+}
