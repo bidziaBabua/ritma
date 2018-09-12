@@ -69,7 +69,13 @@
 			die("Connection ERROR: ".mysqli_connect_error());
 		}
 		if(isset($_POST["newWord"]) && !empty($_POST["newWord"])){
-			$testWord=$_POST["newWord"];
+
+			// New word from input
+			$testWord=$_POST["newWord"]; 
+
+			//TODO: need to be reformated
+			$_POST["newWord"] = ""; // avoid resubmiting
+
 			$arr = preg_split('//u', $testWord, -1, PREG_SPLIT_NO_EMPTY); //UTF-8
 			$vowels=array();
 			$consonants=array();
@@ -86,8 +92,10 @@
 			$newWord=implode('', $newWordArr);
 			$vowelsStr = implode('', $vowels);
 			$consonantsStr=implode('', $consonants);
-			$sql="INSERT INTO `words` (`id`, `word`, `vowels`, `consonants`, `length`) VALUES (NULL, '$newWord', '$vowelsStr', '$consonantsStr', '$wordLen');";
+			$sql="INSERT INTO `words` (`id`, `word`, `vowels`, `consonants`, `length`) VALUES
+			 (NULL, '$newWord', '$vowelsStr', '$consonantsStr', '$wordLen');";
 			$result=mysqli_query($conn, $sql);
+			
 		}
 	?>	
 	<footer>
