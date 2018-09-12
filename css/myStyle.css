@@ -13,3 +13,7 @@
 	width: 1000px;
 	left: 200px;
 }
+
+.resultDiv{
+	border: 1xp solid black !important;
+}

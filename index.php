@@ -39,8 +39,8 @@
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
 			  <ul class="nav navbar-nav">
 				<li><div id="cart"></div></li>
-				<li><a href="index.php">მთავარი</a></li>
-				<li class="active"><a href="addWord.php">დაამატეთ სიტყვა<span class="label label-danger"></span></a> </li>
+				<li class="active"><a href="index.php">მთავარი</a></li>
+				<li><a href="addWord.php">დაამატეთ სიტყვა<span class="label label-danger"></span></a> </li>
 
 			  </ul>
             </div>
@@ -52,10 +52,10 @@
 	
 	
 	<section id="callaction" class="home-section paddingtop-40">
-		<p align="center">გახადე საიტი უკეთესი! დაამატე სიტყვა რითმების ონლაინ ბაზაში და იქეცი პოეტების შთაგონების ირიბ წყაროდ!</p>
+		<p align="center">მოძებნე რითმა</p>
 		<form method="post">	
-           <input id="searchRhyme" type="text" name="newWord">
-           <input id="searchButton" type="submit" name="submit" value="დამატება">
+           <input id="searchRhyme" type="text" name="word">
+           <input id="searchButton" type="submit" name="submit" value="ძებნა">
         </form>
 	</section>
 	<?php
@@ -68,10 +68,10 @@
 		if(!$conn){
 			die("Connection ERROR: ".mysqli_connect_error());
 		}
-		if(isset($_POST["newWord"]) && !empty($_POST["newWord"])){
+		if(isset($_POST["word"]) && !empty($_POST["word"])){
 
-			// New word from input
-			$testWord=$_POST["newWord"]; 
+			// Word from input
+			$testWord=$_POST["word"]; 
 
 			$arr = preg_split('//u', $testWord, -1, PREG_SPLIT_NO_EMPTY); //UTF-8
 			$vowels=array();
@@ -89,10 +89,21 @@
 			$newWord=implode('', $newWordArr);
 			$vowelsStr = implode('', $vowels);
 			$consonantsStr=implode('', $consonants);
-			$sql="INSERT INTO `words` (`id`, `word`, `vowels`, `consonants`, `length`) VALUES
-			 (NULL, '$newWord', '$vowelsStr', '$consonantsStr', '$wordLen');";
+			$sql="SELECT word FROM words WHERE vowels = '$vowelsStr'";
 			$result=mysqli_query($conn, $sql);
-			
+            ?>
+
+            <div class="col-sm-6 col-md-6 col-lg-12" style="left: 200px"><?php
+            if (mysqli_num_rows($result) > 0) {
+                // output data of each row
+                while($row = mysqli_fetch_assoc($result)) {
+                   echo $row["word"]."<br />";
+                }
+            }
+            else {
+                echo "ჩანაწერი არ მოიძებნა!";
+            }
+            ?><br /></div><?php
 		}
 	?>	
 	<footer>
