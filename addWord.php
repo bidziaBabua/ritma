@@ -73,9 +73,6 @@
 			// New word from input
 			$testWord=$_POST["newWord"]; 
 
-			//TODO: need to be reformated
-			$_POST["newWord"] = ""; // avoid resubmiting
-
 			$arr = preg_split('//u', $testWord, -1, PREG_SPLIT_NO_EMPTY); //UTF-8
 			$vowels=array();
 			$consonants=array();
