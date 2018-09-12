@@ -59,40 +59,11 @@
         </form>
 	</section>
 	<?php
-		$servername="localhost";
-		$username="root";
-		$serverPassword="";
-		$DBname="ritma";
-		$conn=mysqli_connect($servername, $username, $serverPassword, $DBname);
-		mysqli_set_charset( $conn, 'utf8' );
-		if(!$conn){
-			die("Connection ERROR: ".mysqli_connect_error());
-		}
+		require_once 'functions.php';
+
 		if(isset($_POST["newWord"]) && !empty($_POST["newWord"])){
-
-			// New word from input
-			$testWord=$_POST["newWord"]; 
-
-			$arr = preg_split('//u', $testWord, -1, PREG_SPLIT_NO_EMPTY); //UTF-8
-			$vowels=array();
-			$consonants=array();
-			$newWordArr=array(); $wordLen=0;
-			foreach($arr as $w){
-				if($w=="ა" || $w=="ე" || $w=="ი" || $w=="ო" || $w=="უ"){
-					array_push($vowels, $w);
-				}
-				else{
-					array_push($consonants, $w);
-				}
-				array_push($newWordArr, $w); $wordLen++;
-			}
-			$newWord=implode('', $newWordArr);
-			$vowelsStr = implode('', $vowels);
-			$consonantsStr=implode('', $consonants);
-			$sql="INSERT INTO `words` (`id`, `word`, `vowels`, `consonants`, `length`) VALUES
-			 (NULL, '$newWord', '$vowelsStr', '$consonantsStr', '$wordLen');";
-			$result=mysqli_query($conn, $sql);
-			
+			$testWord = $_POST["newWord"]; 
+			addNewWord("localhost", "root", "", "ritma", $testWord);
 		}
 	?>	
 	<footer>
