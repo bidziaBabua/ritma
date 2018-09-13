@@ -97,7 +97,6 @@ function isAlreadyInDB($conn, $testWord){
         return false;
     }
     mysqli_close($conn);
-    echo("TEST");
 }
 
 ?>
