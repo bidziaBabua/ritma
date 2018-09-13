@@ -73,21 +73,17 @@
 				<div class="col-sm-6 col-md-6 col-lg-6">
 					<ul class="social">
 						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-						<li><a href="#"><i class="fa fa-youtube"></i></a></li>
 					</ul>
 				
 					<div class="wow fadeInLeft" data-wow-delay="0.1s">
 					<div class="text-left">
-					<p>&copy;Copyright 2014 - Appland. All rights reserved.</p>
+					<p>&copy;Copyright 2018 - Guga Nemsitsveridze.</p>
 					</div>
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-6 col-lg-6">
 					<div class="wow fadeInRight" data-wow-delay="0.1s">
 					<div class="text-right margintop-30">
-						<p>Designed by <a href="http://bootstraptaste.com">Bootstraptaste</a></p>
                         <!-- 
                             All links in the footer should remain intact. 
                             Licenseing information is available at: http://bootstraptaste.com/license/
