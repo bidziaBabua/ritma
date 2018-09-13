@@ -63,7 +63,7 @@
 
 		if(isset($_POST["word"]) && !empty($_POST["word"])){
 			$testWord = $_POST["word"];
-			searchWord("localhost", "root", "", "ritma", $testWord);
+			searchWord("sql111.tt-hosting.ga", "tths_22289711", "59991234", "tths_22289711_ritma", $testWord);
 		}
 	?>	
 	<footer>
