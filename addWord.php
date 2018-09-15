@@ -64,6 +64,7 @@
 		if(isset($_POST["newWord"]) && !empty($_POST["newWord"])){
 			$testWord = $_POST["newWord"]; 
 			addNewWord("sql111.tt-hosting.ga", "tths_22289711", "59991234", "tths_22289711_ritma", $testWord);
+			//addNewWord("localhost", "root", "", "ritma", $testWord);
 		}
 	?>	
 	<footer>

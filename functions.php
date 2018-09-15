@@ -53,7 +53,7 @@ function addNewWord($servername, $username, $serverPassword, $DBname, $testWord)
         echo "ასეთი სიტყვა უკვე არსებობს ბაზაში..";
         ?><br /></div><?php
     }
-    else{
+    else if(isValid($testWord) != false){
         $vowels=array();
         $consonants=array();
         $newWordArr=array(); $wordLen=0;
@@ -78,6 +78,13 @@ function addNewWord($servername, $username, $serverPassword, $DBname, $testWord)
         echo "სიტყვა წარმატებით დაემატა";
         ?><br /></div><?php
     }
+    else{
+        ?>
+
+        <div class="col-sm-6 col-md-6 col-lg-10" style="left: 200px; font-size: 24px; color: red"><?php
+        echo "გამოიყენეთ მხოლოდ ქართული ასოები!";
+        ?><br /></div><?php
+    }
     mysqli_close($conn);
 }
 
@@ -97,6 +104,16 @@ function isAlreadyInDB($conn, $testWord){
         return false;
     }
     mysqli_close($conn);
+}
+
+function isValid($word){
+    $regexForLatinCharachters = "/[a-z]/i";
+    if (preg_match($regexForLatinCharachters, $word)){
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 
 ?>
