@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 function searchWord($servername, $username, $serverPassword, $DBname, $testWord){
     $conn=mysqli_connect($servername, $username, $serverPassword, $DBname);
     mysqli_set_charset( $conn, 'utf8' );
@@ -18,9 +18,9 @@ function searchWord($servername, $username, $serverPassword, $DBname, $testWord)
         }
         array_push($newWordArr, $w); $wordLen++;
     }
-    $newWord=implode('', $newWordArr);
+//    $newWord=implode('', $newWordArr);
     $vowelsStr = implode('', $vowels);
-    $consonantsStr=implode('', $consonants);
+//    $consonantsStr=implode('', $consonants);
     $sql="SELECT word FROM words WHERE vowels = '$vowelsStr'";
     $result=mysqli_query($conn, $sql);
     ?>
@@ -71,7 +71,7 @@ function addNewWord($servername, $username, $serverPassword, $DBname, $testWord)
         $consonantsStr=implode('', $consonants);
         $sql="INSERT INTO `words` (`id`, `word`, `vowels`, `consonants`, `length`) VALUES
             (NULL, '$newWord', '$vowelsStr', '$consonantsStr', '$wordLen');";
-        $result=mysqli_query($conn, $sql);
+        mysqli_query($conn, $sql); // Execute Query
         ?>
 
         <div class="col-sm-6 col-md-6 col-lg-10" style="left: 200px; font-size: 24px; color: 	#A4C439"><?php
@@ -89,6 +89,7 @@ function addNewWord($servername, $username, $serverPassword, $DBname, $testWord)
 }
 
 function isAlreadyInDB($conn, $testWord){
+    $isInDB = false;
     mysqli_set_charset( $conn, 'utf8' );
     if(!$conn){
         die("Connection ERROR: ".mysqli_connect_error());
@@ -98,12 +99,10 @@ function isAlreadyInDB($conn, $testWord){
     $sql="SELECT word FROM words WHERE word = '$newWord'";
     $result=mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0){
-        return true;
-    }
-    else{
-        return false;
+        $isInDB = true;
     }
     mysqli_close($conn);
+    return $isInDB;
 }
 
 function isValid($word){
